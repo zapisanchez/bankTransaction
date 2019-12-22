@@ -101,6 +101,7 @@ class Transactor extends Component {
                     onChange={this.updateInputValue} />
             <Button
                 content='Transact!'
+                color='google plus'
                 onClick={this.checkAndTransact}
                  />
         </div>
