@@ -2,7 +2,7 @@
 
 # dependencies
 bankview/node_modules
-bankApp/target/
+bankApp/target
 /.pnp
 .pnp.js
 
