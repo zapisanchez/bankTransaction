@@ -1,18 +1,21 @@
-.App-header {
-  width: 200;
+#App-header {
+  width: 392;
+  min-width: 392;
+  max-width: 392;
 }
 
-.App-Table
+#App-Table
 {
   display: flex;
   flex:1;
   flex-direction: column;
   min-height: -webkit-min-content;
   overflow: auto;
+
+  padding-top: 15px;
+  padding-left: 30px;
+  padding-right: 15px;
 }
-
-
-
 /*https://css-tricks.com/snippets/css/a-guide-to-flexbox/*/
 .mainCo{
   position: absolute;
@@ -28,3 +31,46 @@
 
 
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#JustAnotherButton{
+  width:5;
+  height:5;
+  opacity: 0.0;
+  filter: alpha(opacity=90);
+  margin-top: auto;
+}

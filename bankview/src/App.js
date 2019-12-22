@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
 import './App.css';
 
+//Some UI components
+import 'semantic-ui-css/semantic.min.css'
+import { Table } from 'semantic-ui-react'
+
+//System (REST) request
+import axios from 'axios';
+
+//Mine
 import UserList from './UserList';
 import UserHeader from './UserHeader';
-
-import axios from 'axios';
 import Settingicon from './SettingsIcon'
+import Fun from './LetsFun'
 import Transactor from './Transactor'
-import 'semantic-ui-css/semantic.min.css'
 
-import { Table } from 'semantic-ui-react'
 
 
 class App extends Component{
@@ -40,6 +44,11 @@ class App extends Component{
     }
   }
 
+  isFunDay(){
+    let day = new Date();
+    return day.getDay() === 5 ? true : false;
+  }
+
   render(){
     console.log("New Table")
     return (
@@ -50,10 +59,10 @@ class App extends Component{
        <Settingicon />
         <Transactor users = {this.state.persons}
                     onPutDone={this.doGetPetition.bind(this)}/>
+        {this.isFunDay()? <Fun/> : null}
       </div>
-
       <div id ='App-Table'>
-        <Table basic='very' celled collapsing id='persons' className='fullTable'>
+        <Table basic='very' collapsing id='persons' className='fullTable'>
           <UserHeader users={this.state.persons}/>
           <UserList users={this.state.persons}/>
         </Table>
@@ -61,10 +70,10 @@ class App extends Component{
       
       </div>
     )
-    
-
    }
-
 }
+
+
+
 
 export default App;

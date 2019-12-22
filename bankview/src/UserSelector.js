@@ -36,7 +36,7 @@ class UserSelector extends Component {
         if (!enableSecond)
         {
             this.setState({walletHash : walletList[0].hash})
-            console.log("valor de hash: " + walletList[0].hash)
+            //console.log("valor de hash: " + walletList[0].hash)
             this.hashUsed(walletList[0].hash);
         }
 

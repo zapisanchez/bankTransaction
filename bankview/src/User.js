@@ -125,15 +125,7 @@ class User extends Component {
      * I know will have better way of doing this thing
      * But at this moment, i don't remember others
      */
-    
-//<Table.Row key={`row-${key.hash}-${index}`}></Table.Row>
-
-/* <Label as='a' image 
-onClick={this.showBio()}>
-<img src={this.getImageByName(this.props.name)} 
-     alt={defImg}/>
-    {this.props.name}</Label> */
-
+   
     render() {
         
     //console.log("Valor de User: " + JSON.stringify(this.props));
