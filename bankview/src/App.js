@@ -8,7 +8,7 @@ import { Table } from 'semantic-ui-react'
 //System (REST) request
 import axios from 'axios';
 
-//Mine
+
 import UserList from './UserList';
 import UserHeader from './UserHeader';
 import Settingicon from './SettingsIcon'
@@ -67,13 +67,9 @@ class App extends Component{
           <UserList users={this.state.persons}/>
         </Table>
       </div>
-      
       </div>
     )
    }
 }
-
-
-
 
 export default App;
