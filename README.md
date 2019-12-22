@@ -8,7 +8,7 @@ Installation:
 go to bankApp and: $mvn clean package && mvn -e spring-boot:run
 the server willle be listenning in localhost:8080/
 
-in other terminal, go to bankview and: $npm start
+in other terminal, go to bankview and: $npm install && $npm start
 
 Enjoy :)
 
