@@ -27,8 +27,14 @@ public class UserController {
         User morty = new User(counter.incrementAndGet(), "Bird", "Person");
         User abra = new User(counter.incrementAndGet(), "Abradolf", "Lincler");
         User pen = new User(counter.incrementAndGet(), "Pencil", "Vester" );
+        User poopy = new User(counter.incrementAndGet(), "Poopy", "Butthole" );
+
+        abra.getWalletList().get(0).setBalance(50.0f);
+        poopy.getWalletList().get(0).setBalance(288.0f);
 
         rick.addWallet(2);
+        rick.getWalletList().get(0).setBalance(2000.3f);
+
         pen.addWallet(3);
         pen.getWalletList().get(0).setBalance(20.3f);
         pen.getWalletList().get(1).setBalance(288.0f);
@@ -38,6 +44,7 @@ public class UserController {
         userList.add(morty);
         userList.add(abra);
         userList.add(pen);
+        userList.add(poopy);
 
         logger.info ("Users initializated succesfully");
     }
@@ -119,7 +126,7 @@ public class UserController {
         return resultW;*/
     }
 
-    //to move money between wallets
+     //to move money between wallets
     @RequestMapping(value = "/move", method=RequestMethod.POST)
     public String transaction (@RequestParam(value="from", defaultValue="") int from,
                                @RequestParam(value="to", defaultValue="") int to,
@@ -139,9 +146,48 @@ public class UserController {
             fromWallet.setBalance(fromWallet.getBalance() - amount);
             toWallet.setBalance(toWallet.getBalance() + amount);
         }
+        else
+        {
+            logger.error("Not a valid transaction.");
+            logger.error("FROM: " + from + " TO: " + to + " AMOUNT: " + amount);
+        }
 
         logger.error("FROM: " + from + " TO: " + to + " AMOUNT: " + amount);
 
         return ("zapi");
+    }
+
+    //Lets add a new User from UI
+    @RequestMapping(value = "/new", method=RequestMethod.POST)
+    public String newUser (@RequestParam(value="name", defaultValue="") String name,
+                               @RequestParam(value="lastName", defaultValue="") String lastName,
+                               @RequestParam(value="amount", defaultValue="")float amount) {
+
+
+        User newUser = new User(counter.incrementAndGet(), name, lastName );
+        newUser.getWalletList().get(0).setBalance(amount);
+
+        userList.add(new User(counter.incrementAndGet(), name, lastName ));
+
+        return "Added new User";
+    }
+
+    //Deleting user
+    @RequestMapping(value = "/del", method=RequestMethod.POST)
+    public String delUser (@RequestParam(value="id", defaultValue="") long id,
+                           @RequestParam(value="name", defaultValue="") String name,
+                           @RequestParam(value="lastName", defaultValue="") String lastName) {
+
+        for (User user : userList) {
+            if (user.getId() == id
+                && user.getName() == name
+                && user.getLastName() == lastName){
+                userList.remove(user);
+                break;
+            }
+        }
+
+
+        return "Deleted User";
     }
 }

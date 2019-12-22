@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1dbc7fc3-f0ae-4fb7-8f52-e32f8c7af3d0" name="Default Changelist" comment="" />
+    <list default="true" id="1dbc7fc3-f0ae-4fb7-8f52-e32f8c7af3d0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gs-rest-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/gs-rest-service.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/bankAppService-0.1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/bankAppService-0.1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/bankAppService-0.1.0.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/bankAppService-0.1.0.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bankview/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/../bankview/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bankview/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../bankview/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bankview/src/Transactor.js" beforeDir="false" afterPath="$PROJECT_DIR$/../bankview/src/Transactor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bankview/src/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/../bankview/src/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bankview/src/UserList.js" beforeDir="false" afterPath="$PROJECT_DIR$/../bankview/src/UserList.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,10 +25,14 @@
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1VFKT322CmGeua8r5C8yDwqJwpp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -21,7 +40,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../zapiPay" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -53,5 +73,9 @@
       <screen x="0" y="28" width="1366" height="712" />
     </state>
     <state x="466" y="142" width="426" height="484" key="FileChooserDialogImpl/0.28.1366.712@0.28.1366.712" timestamp="1576843504598" />
+    <state x="339" y="212" key="com.intellij.ide.util.TipDialog" timestamp="1577005811110">
+      <screen x="0" y="28" width="1366" height="712" />
+    </state>
+    <state x="339" y="212" key="com.intellij.ide.util.TipDialog/0.28.1366.712@0.28.1366.712" timestamp="1577005811110" />
   </component>
 </project>
