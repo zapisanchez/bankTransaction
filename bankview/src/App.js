@@ -43,17 +43,22 @@ class App extends Component{
   render(){
     console.log("New Table")
     return (
-      <div id ='root' >
-      <div id ='maindiv' className='mainCo'>
-       <Settingicon/>
-        <Table celled id='persons' className='mainCo'>
+                    
+      <div id ='root' className='mainCo'>
+
+      <div id='App-header'>
+       <Settingicon />
+        <Transactor users = {this.state.persons}
+                    onPutDone={this.doGetPetition.bind(this)}/>
+      </div>
+
+      <div id ='App-Table'>
+        <Table basic='very' celled collapsing id='persons' className='fullTable'>
           <UserHeader users={this.state.persons}/>
           <UserList users={this.state.persons}/>
         </Table>
-
       </div>
-        <Transactor users = {this.state.persons}
-                    onPutDone={this.doGetPetition.bind(this)}/>
+      
       </div>
     )
     

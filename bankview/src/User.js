@@ -144,7 +144,7 @@ onClick={this.showBio()}>
             <Table.Cell>{this.props.id}</Table.Cell>
             <Table.Cell>
 
-            <Modal trigger={
+        <Modal trigger={
                 <Label as='a' >
                 <Image avatar spaced='right' 
                 src={this.getImageByName(this.props.name)}/>
@@ -161,7 +161,9 @@ onClick={this.showBio()}>
             </Table.Cell>
             <Table.Cell>{this.props.lastName}</Table.Cell>
             <Table.Cell key={`hashCell-${key.hash}-${index}`}>{key.hash}</Table.Cell>
-            <Table.Cell key={`moneyCell-${key.hash}-${index}`}>{key.balance}</Table.Cell>
+            <Table.Cell className='MoneyCell' 
+            textAlign='right'
+            key={`moneyCell-${key.hash}-${index}`}>{key.balance} €</Table.Cell>
         </Table.Row>
         )
     })
