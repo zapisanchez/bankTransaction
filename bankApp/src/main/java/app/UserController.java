@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 public class UserController {
@@ -68,6 +70,13 @@ public class UserController {
 
         //fillDummyUsers();
         logger.info("Users size: " + userList.size());
+
+        if (userList.isEmpty())
+        {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "We don't have any Users!");
+        }
+
         return userList;
     }
 
@@ -83,7 +92,14 @@ public class UserController {
                 result = theUser;
                 break;
             }
+
         }
+        if (result == null)
+        {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "User "+ name + " not exist");
+        }
+
         logger.error("Getting user name: " + result.getName());
         return result;
 
@@ -150,6 +166,8 @@ public class UserController {
         {
             logger.error("Not a valid transaction.");
             logger.error("FROM: " + from + " TO: " + to + " AMOUNT: " + amount);
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "This is not a valid transaction");
         }
 
         logger.error("FROM: " + from + " TO: " + to + " AMOUNT: " + amount);

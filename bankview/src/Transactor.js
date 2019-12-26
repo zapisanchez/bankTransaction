@@ -1,9 +1,17 @@
 import React, { Component} from 'react';
 import UserSelector from './UserSelector'
-import { Input, Button, Label, Message } from 'semantic-ui-react'
+import { Input, Button, Label, Message} from 'semantic-ui-react'
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+let options = {
+    type: toast.TYPE.ERROR,
+}
 class Transactor extends Component {
+
+
+    notify = (info) => toast(info, options);
 
     constructor(props) {
         super(props);
@@ -40,6 +48,8 @@ class Transactor extends Component {
         }))
     }
 
+    
+
     checkAndTransact(event, data){
 
         //Here is where magic happens
@@ -68,17 +78,24 @@ class Transactor extends Component {
                 //transactions correctly applied
                 //Calling callback
                 that.doGetPetition();
-                
             }
-          })
-          .catch(function (error) {
-            console.log(error);
+        })
+        .catch(function (error) {
+            //Here we could make a good error handling,
+            // Seeing what number os the post response 
+            // and giving to the user more info
+            // Not enough money etc...
+            console.log("Zapi: " + error);
+            //that.showModalResult();
+            that.notify("Transaction Error! (Wallet has money?)");
           });
      }
 
     updateInputValue(event, data){
         this.setState({inputValue : data.value});
+
     }
+
 
     render() {
         return (
@@ -100,10 +117,14 @@ class Transactor extends Component {
             <Input placeholder='Money...'
                     onChange={this.updateInputValue} />
             <Button
+                id='transButton'
                 content='Transact!'
                 color='google plus'
                 onClick={this.checkAndTransact}
                  />
+            <ToastContainer 
+            position='top-center'
+            />
         </div>
         )
     }
