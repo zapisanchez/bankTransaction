@@ -16,5 +16,5 @@ Added docker image for the service available in:
 https://hub.docker.com/r/zetarules/bank-service
 
 for pull: docker pull zetarules/bank-service
-for run service: sudo docker run -p 8000:8080 bank-service (8000 por is where call the front end)
+for run service: sudo docker run -p 8080:8080 bank-service (8080 por is where call the front end)
 
