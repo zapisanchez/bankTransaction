@@ -23,5 +23,5 @@ Added docker image for the client available in:
 https://hub.docker.com/r/zetarules/react-client
 for pull: docker pull zetarules/react-client:0.0.1-SNAPSHOT
 
-for run: docker run -v ${PWD}:/app -v /app/node_modules -p 3000:3000 --rm react-client
+for run: docker run -p 3000:3000 react-client
 
