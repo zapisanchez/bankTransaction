@@ -3,6 +3,7 @@
 # dependencies
 bankview/node_modules
 bankApp/target
+bankApp/.idea
 bankview/.idea
 /.pnp
 .pnp.js
@@ -19,6 +20,9 @@ bankview/.idea
 .env.development.local
 .env.test.local
 .env.production.local
+
+.eslintrc.json
+.prettierrc
 
 npm-debug.log*
 yarn-debug.log*

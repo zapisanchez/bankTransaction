@@ -1,36 +1,32 @@
-import React, { Component } from 'react';
-import { Table } from 'semantic-ui-react'
+import React from 'react';
+import { Table } from 'semantic-ui-react';
 
-class UserHeader extends Component {
+// I think is better use a Functional Component
+//instead in this option.
+function UserHeader(props) {
+  function getHeader(props) {
+    if (props.users && props.users[0]) {
+      let header = Object.keys(props.users && props.users[0]);
 
-    getHeader(){
-        if(this.props.users && this.props.users[0]){
-      
-          let header = Object.keys(this.props.users && this.props.users[0]);
-          console.log ("the header: " + header)
-        
-          //as known as "the ñapa..."
-          header[header.indexOf('walletList')] = 'hashId';
-          header.push('Amount');
-      
-          return header.map((key, index) => {
-            return (
-                <Table.HeaderCell key={`header-${index}`}> 
-                    {key.toUpperCase()}
-                </Table.HeaderCell>
-            )
-          })
-        }
-      }
+      //as known as "the ñapa..."
+      header[header.indexOf('walletList')] = 'hashId';
+      header.push('Amount');
 
-    render(){
-        return(
-        <Table.Header>
-        <Table.Row>
-            {this.getHeader()}
-        </Table.Row>
-        </Table.Header>
-        )}
+      return header.map((key, index) => {
+        return (
+          <Table.HeaderCell key={`header-${index}`}>
+            {key.toUpperCase()}
+          </Table.HeaderCell>
+        );
+      });
+    }
+  }
+
+  return (
+    <Table.Header>
+      <Table.Row>{getHeader(props)}</Table.Row>
+    </Table.Header>
+  );
 }
 
 export default UserHeader;
