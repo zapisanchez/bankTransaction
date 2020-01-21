@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Table, Label, Image, Modal, Header } from 'semantic-ui-react';
 
 import rickImg from './resources/rick-front.png';
@@ -8,18 +8,16 @@ import penImg from './resources/pencil-front.png';
 import pooImg from './resources/poopy-front.png';
 import defImg from './resources/default-avatar.png';
 
-class User extends Component {
-  getImageByName(name) {
+const User = props => {
+  function getImageByName(name) {
     let imagePath;
 
     switch (name) {
       case 'Rick':
         imagePath = rickImg;
-
         break;
       case 'Bird':
         imagePath = birdImg;
-
         break;
       case 'Abradolf':
         imagePath = abraImg;
@@ -39,7 +37,7 @@ class User extends Component {
   }
 
   //This should be in the server side, in User...
-  getDescriptionByName(name) {
+  function getDescriptionByName(name) {
     let header;
     let mainText;
     let subText;
@@ -95,8 +93,8 @@ class User extends Component {
     return [header, mainText, subText];
   }
 
-  getModalDescription(name) {
-    let [header, mainText, subtext] = this.getDescriptionByName(name);
+  function getModalDescription(name) {
+    let [header, mainText, subtext] = getDescriptionByName(name);
 
     return (
       <Modal.Description>
@@ -117,53 +115,42 @@ class User extends Component {
    * But at this moment, i don't remember others
    */
 
-  render() {
-    //console.log("Valor de User: " + JSON.stringify(this.props));
-    return this.props.walletList?.map((key, index) => {
-      return (
-        <Table.Row key={`row-${key.hash}-${index}`}>
-          <Table.Cell>{this.props.id}</Table.Cell>
-          <Table.Cell>
-            <Modal
-              trigger={
-                <Label as="a">
-                  <Image
-                    avatar
-                    spaced="right"
-                    src={this.getImageByName(this.props.name)}
-                  />
-                  {this.props.name}
-                </Label>
-              }
-            >
-              <Modal.Header>
-                {this.props.name} {this.props.lastName}
-              </Modal.Header>
-              <Modal.Content image>
-                <Image
-                  wrapped
-                  size="small"
-                  src={this.getImageByName(this.props.name)}
-                />
-                {this.getModalDescription(this.props.name)}
-              </Modal.Content>
-            </Modal>
-          </Table.Cell>
-          <Table.Cell>{this.props.lastName}</Table.Cell>
-          <Table.Cell key={`hashCell-${key.hash}-${index}`}>
-            {key.hash}
-          </Table.Cell>
-          <Table.Cell
-            className="MoneyCell"
-            textAlign="right"
-            key={`moneyCell-${key.hash}-${index}`}
+  //console.log("Valor de User: " + JSON.stringify(props));
+  return props.walletList?.map((key, index) => {
+    return (
+      <Table.Row key={`row-${key.hash}-${index}`}>
+        <Table.Cell>{props.id}</Table.Cell>
+        <Table.Cell>
+          <Modal
+            trigger={
+              <Label as="a">
+                <Image avatar spaced="right" src={getImageByName(props.name)} />
+                {props.name}
+              </Label>
+            }
           >
-            {key.balance} €
-          </Table.Cell>
-        </Table.Row>
-      );
-    });
-  }
-}
-
+            <Modal.Header>
+              {props.name} {props.lastName}
+            </Modal.Header>
+            <Modal.Content image>
+              <Image wrapped size="small" src={getImageByName(props.name)} />
+              {getModalDescription(props.name)}
+            </Modal.Content>
+          </Modal>
+        </Table.Cell>
+        <Table.Cell>{props.lastName}</Table.Cell>
+        <Table.Cell key={`hashCell-${key.hash}-${index}`}>
+          {key.hash}
+        </Table.Cell>
+        <Table.Cell
+          className="MoneyCell"
+          textAlign="right"
+          key={`moneyCell-${key.hash}-${index}`}
+        >
+          {key.balance} €
+        </Table.Cell>
+      </Table.Row>
+    );
+  });
+};
 export default User;

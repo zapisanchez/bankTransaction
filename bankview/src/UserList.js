@@ -1,18 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Table } from 'semantic-ui-react';
 import User from './User';
 
-class UserList extends Component {
-  getWalletList(walletList) {
-    walletList.map(u => {
-      return u.hash;
-    });
-  }
-
-  render() {
-    return (
-      <Table.Body>
-        {this.props.users.map(u => {
+//function UserList(props){}
+const UserList = props => {
+  return (
+    <Table.Body>
+      {props.users &&
+        props.users.map(u => {
           return (
             <User
               id={u.id}
@@ -25,10 +20,8 @@ class UserList extends Component {
             />
           );
         })}
-      </Table.Body>
-    );
-  }
-  // hash={u.walletList?.[0]?.hash}
-}
+    </Table.Body>
+  );
+};
 
 export default UserList;

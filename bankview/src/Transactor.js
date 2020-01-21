@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import UserSelector from './UserSelector';
 import { Input, Button, Label, Message } from 'semantic-ui-react';
 import axios from 'axios';
@@ -8,65 +8,45 @@ import 'react-toastify/dist/ReactToastify.css';
 let options = {
   type: toast.TYPE.ERROR,
 };
-class Transactor extends Component {
-  notify = info => toast(info, options);
 
-  constructor(props) {
-    super(props);
+const Transactor = props => {
+  const notify = info => toast(info, options);
 
-    this.state = {
-      fromHash: 0,
-      toHash: 0,
-    };
+  const [fromHash, setFromHash] = useState(0);
+  const [toHash, setToHash] = useState(0);
+  const [inputValue, setInputValue] = useState(null);
 
-    this.checkAndTransact = this.checkAndTransact.bind(this);
-    this.updateInputValue = this.updateInputValue.bind(this);
-    this.doGetPetition = this.doGetPetition.bind(this);
+  function doGetPetition() {
+    props.onPutDone();
   }
 
-  doGetPetition() {
-    this.props.onPutDone();
+  function updateInputValue(event, data) {
+    setInputValue(data.value);
   }
 
-  updateFromHashSelected(fromHash) {
-    this.setState(state => ({
-      fromHash: fromHash,
-    }));
-  }
-
-  updateToHashSelected(toHash) {
-    this.setState(state => ({
-      toHash: toHash,
-    }));
-  }
-
-  checkAndTransact(event, data) {
+  function checkAndTransact(event, data) {
     //Here is where magic happens
-
-    //Best hack 4ever
-    //http://shorturl.at/gipJY
-    let that = this;
 
     // Send a POST request
     axios({
       method: 'post',
       url: `http://localhost:8080/move`,
       data: {
-        from: parseInt(this.state.fromHash),
-        to: parseInt(this.state.toHash),
-        amount: parseFloat(this.state.inputValue),
+        from: parseInt(fromHash),
+        to: parseInt(toHash),
+        amount: parseFloat(inputValue),
       },
       params: {
-        from: parseInt(this.state.fromHash),
-        to: parseInt(this.state.toHash),
-        amount: parseFloat(this.state.inputValue),
+        from: parseInt(fromHash),
+        to: parseInt(toHash),
+        amount: parseFloat(inputValue),
       },
     })
       .then(function(response) {
         if (response.status === 200) {
           //transactions correctly applied
           //Calling callback
-          that.doGetPetition();
+          doGetPetition();
         }
       })
       .catch(function(error) {
@@ -75,41 +55,29 @@ class Transactor extends Component {
         // and giving to the user more info
         // Not enough money etc...
         //that.showModalResult();
-        that.notify('Transaction Error! (Wallet has money?)');
+        notify('Transaction Error! (Wallet has money?)');
       });
   }
+  return (
+    <div id="transaction">
+      <Message>
+        <Message.Header>Make a Transaction</Message.Header>
+        <p>Select 2 users to make a wallet transaction</p>
+      </Message>
+      <UserSelector users={props.users} callback={setFromHash} />
+      <UserSelector users={props.users} callback={setToHash} />
 
-  updateInputValue(event, data) {
-    this.setState({ inputValue: data.value });
-  }
+      <Label>Select Budget</Label>
+      <Input placeholder="Money..." onChange={updateInputValue} />
+      <Button
+        id="transButton"
+        content="Transact!"
+        color="google plus"
+        onClick={checkAndTransact}
+      />
+      <ToastContainer position="top-center" />
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div id="transaction">
-        <Message>
-          <Message.Header>Make a Transaction</Message.Header>
-          <p>Select 2 users to make a wallet transaction</p>
-        </Message>
-        <UserSelector
-          users={this.props.users}
-          callback={this.updateFromHashSelected.bind(this)}
-        />
-        <UserSelector
-          users={this.props.users}
-          callback={this.updateToHashSelected.bind(this)}
-        />
-
-        <Label>Select Budget</Label>
-        <Input placeholder="Money..." onChange={this.updateInputValue} />
-        <Button
-          id="transButton"
-          content="Transact!"
-          color="google plus"
-          onClick={this.checkAndTransact}
-        />
-        <ToastContainer position="top-center" />
-      </div>
-    );
-  }
-}
 export default Transactor;

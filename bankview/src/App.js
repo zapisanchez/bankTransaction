@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 //Some UI components
@@ -14,55 +14,43 @@ import Settingicon from './SettingsIcon';
 import Fun from './LetsFun';
 import Transactor from './Transactor';
 
-class App extends Component {
-  state = {
-    persons: [],
-  };
+const App = () => {
+  const [persons, setPersons] = useState([]);
 
-  doGetPetition() {
+  function doGetPetition() {
     axios.get(`http://localhost:8080/users`).then(res => {
       const persons = res.data;
-      console.log('Zapi:' + JSON.stringify(persons));
-      this.setState({ persons });
+      setPersons(persons);
     });
   }
 
-  componentDidMount() {
-    this.doGetPetition();
-  }
+  useEffect(() => {
+    //Get Petition
+    axios.get(`http://localhost:8080/users`).then(res => {
+      setPersons(res.data);
+    });
+  }, []);
 
-  componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
-    if (this.props.userID !== prevProps.userID) {
-      this.doGetPetition();
-    }
-  }
-
-  isFunDay() {
+  function isFunDay() {
     let day = new Date();
     return day.getDay() === 5 ? true : false;
   }
 
-  render() {
-    return (
-      <div id="root" className="mainCo">
-        <div id="App-header">
-          <Settingicon />
-          <Transactor
-            users={this.state.persons}
-            onPutDone={this.doGetPetition.bind(this)}
-          />
-          {this.isFunDay() ? <Fun /> : null}
-        </div>
-        <div id="App-Table">
-          <Table basic="very" collapsing id="persons" className="fullTable">
-            <UserHeader users={this.state.persons} />
-            <UserList users={this.state.persons} />
-          </Table>
-        </div>
+  return (
+    <div id="root" className="mainCo">
+      <div id="App-header">
+        <Settingicon />
+        <Transactor users={persons} onPutDone={doGetPetition} />
+        {isFunDay() ? <Fun /> : null}
       </div>
-    );
-  }
-}
+      <div id="App-Table">
+        <Table basic="very" collapsing id="persons" className="fullTable">
+          <UserHeader users={persons} />
+          <UserList users={persons} />
+        </Table>
+      </div>
+    </div>
+  );
+};
 
 export default App;
