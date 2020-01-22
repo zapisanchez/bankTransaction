@@ -26,9 +26,7 @@ const App = () => {
 
   useEffect(() => {
     //Get Petition
-    axios.get(`http://localhost:8080/users`).then(res => {
-      setPersons(res.data);
-    });
+    doGetPetition();
   }, []);
 
   function isFunDay() {
